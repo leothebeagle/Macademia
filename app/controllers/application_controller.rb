@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    "Hello World!"
+    erb :"index.html"
   end
 
   helpers do
