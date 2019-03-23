@@ -11,6 +11,10 @@ class ApplicationController < Sinatra::Base
     erb :"index.html"
   end
 
+  get '/failure' do
+    erb :"failure.html"
+  end
+
   helpers do
     def logged_in?
       !!session[:user_id]
