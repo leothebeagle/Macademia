@@ -14,15 +14,19 @@ class StudentsController < ApplicationController
       redirect '/students/new' #include a message that you need to input data in all fields
     else
       student = Student.create(:username => params[:username], :email => params[:email], :password => params[:password])
-      session[:user_id] = student.id # have amethod that logs someone in
+      session[:user_id] = student.id # have a method that logs someone in
       redirect "students/#{student.id}" # could possibly refactor this to current_user
     end
   end
 
   get '/students/:id' do
-    # can only view this page if logged in
-    @student = Student.find(current_user.id)
-    erb :"student/show.html"
+    # can only view this page if logged in and if you are the actual user
+    if logged_in? && params[:id].to_i == current_user.id
+      @student = current_user
+      erb :"students/show.html"
+    else
+      redirect '/failure'
+    end
   end
 
 end

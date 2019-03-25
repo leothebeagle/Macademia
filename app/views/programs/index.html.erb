@@ -1,3 +1,8 @@
-list each of the students programs by name
+list each of the students programs by name.
+link to each programs show page
+have a button to create a new program
 
-have a button to create a new program 
+
+<% programs.each do |program| %>
+  <p><a href="/programs/<%= program.id %>"> <%= program.name %> </a></p>
+<% end %>
