@@ -1,0 +1,5 @@
+Topic.create(:name => "Biology")
+Topic.create(:name => "Violin")
+Topic.create(:name => "Geometry")
+Topic.create(:name => "Painting")
+Topic.create(:name => "Cooking")

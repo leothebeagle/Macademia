@@ -8,8 +8,9 @@ class ProgramsController < ApplicationController
 
   get '/programs/new' do
     if !logged_in?
-      erb :failure
+      erb :"failure.html"
     else
+      @topics = Topic.all
       erb :"programs/create_program.html"
     end
   end
