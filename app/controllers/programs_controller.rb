@@ -2,8 +2,6 @@ class ProgramsController < ApplicationController
 
 
   get '/programs' do
-    @propgrams = current_user.programs
-    erb :"programs/index.html"
   end
 
   get '/programs/new' do
@@ -16,7 +14,7 @@ class ProgramsController < ApplicationController
   end
 
   post '/programs' do
-    raise params.inspect
+
   end
 
   get '/programs/:id' do
