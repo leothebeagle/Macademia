@@ -50,5 +50,15 @@ class ProgramsController < ApplicationController
     end
   end
 
+  get '/programs/:id/edit' do
+    @program = Program.find(params[:id])
+
+    if logged_in? && @program.student == current_user
+      erb :"programs/edit.html"
+    else
+      redirect '/failure'
+    end
+  end
+
 
 end

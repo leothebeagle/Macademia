@@ -6,6 +6,8 @@
   <p><li><%= topic.name %></li></p>
 <% end %>
 
+<p><a href="/programs/<%= @program.id %>/edit">Edit Program</a></p>
+
 
 <form action="/programs/<%= @program.id %>" method="post">
   <input type="hidden" name="_method" value="delete">
