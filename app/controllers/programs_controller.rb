@@ -25,9 +25,19 @@ class ProgramsController < ApplicationController
   get '/programs/:id' do
     @program = Program.find(params[:id])
     @topics = @program.topics
-    
+
     if logged_in? && @program.student == current_user
       erb :"programs/show.html"
+    else
+      redirect '/failure'
+    end
+  end
+
+  post '/programs/:id/delete' do
+    @program = Program.find(params[:id])
+    if logged_in? && @program.student == current_user
+      @program.delete
+      redirect '/programs'
     else
       redirect '/failure'
     end
