@@ -23,8 +23,12 @@ class ProgramsController < ApplicationController
   end
 
   get '/programs/:id' do
-    # look up the program using the program id
-    # make sure that the program being looked up actually belongs to the current username
+    @program = Program.find(params[:id])
+    if logged_in? && @program.student == current_user
+      erb :"programs/show.html"
+    else
+      redirect '/failure'
+    end
   end
 
 
