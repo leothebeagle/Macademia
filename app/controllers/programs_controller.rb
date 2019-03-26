@@ -50,8 +50,21 @@ class ProgramsController < ApplicationController
     end
   end
 
+  patch '/programs/:id' do
+    program = Program.find(params[:id])
+    if logged_in? && program.student == current_user
+      program.topic_ids = params[:topic_selections]
+      program.save
+
+      redirect "/programs/#{program.id}"
+    else
+      redirect '/failure'
+    end
+  end
+
   get '/programs/:id/edit' do
     @program = Program.find(params[:id])
+    @topics = Topic.all
 
     if logged_in? && @program.student == current_user
       erb :"programs/edit.html"
