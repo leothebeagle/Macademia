@@ -33,8 +33,9 @@ class ProgramsController < ApplicationController
     end
   end
 
-  post '/programs/:id/delete' do
+  delete '/programs/:id' do
     @program = Program.find(params[:id])
+
     if logged_in? && @program.student == current_user
       @program.delete
       redirect '/programs'
