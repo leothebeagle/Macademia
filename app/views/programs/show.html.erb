@@ -1,10 +1,13 @@
 <h3>This is the page for <%= @program.name %></h3>
 
-<label>These are the topics you have included in your program</label>
+<p>These are the topics you have included in your program:</p>
+
 <% @topics.each do |topic| %>
   <p><li><%= topic.name %></li></p>
 <% end %>
 
- button to delete the program
 
- button to edit the program
+<form action="/programs/<%= @program.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Program">
+</form>

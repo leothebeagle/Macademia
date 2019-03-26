@@ -19,7 +19,7 @@ class ProgramsController < ApplicationController
     new_program.topic_ids = params[:topic_selections]
     new_program.save
 
-    redirect "/programs/#{program.id}"
+    redirect "/programs/#{new_program.id}"
   end
 
   get '/programs/:id' do
