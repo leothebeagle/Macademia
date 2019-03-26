@@ -14,7 +14,12 @@ class ProgramsController < ApplicationController
   end
 
   post '/programs' do
+    new_program = Program.create(:name => params[:program_name])
+    current_user.programs << new_program
+    new_program.topic_ids = params[:topic_selections]
+    new_program.save
 
+    redirect "/programs/#{program.id}"
   end
 
   get '/programs/:id' do
