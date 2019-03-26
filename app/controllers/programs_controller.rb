@@ -2,6 +2,12 @@ class ProgramsController < ApplicationController
 
 
   get '/programs' do
+    @programs = current_user.programs
+    if !logged_in?
+      redirect '/failure'
+    else
+      erb :"programs/index.html"
+    end
   end
 
   get '/programs/new' do
