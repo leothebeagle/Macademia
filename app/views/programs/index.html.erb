@@ -1,11 +1,10 @@
-list each of the students programs by name.
-link to each programs show page
-have a button to create a new program
 
+<h4>These are the programs you currently have:</h4>
 
 <% @programs.each do |program| %>
   <p><a href="/programs/<%= program.id %>"> <%= program.name %> </a></p>
 <% end %>
 
+<p>Would you like to <a href="/programs/new">create</a> a new program?</p>
 
 <p><a href="/logout">Logout</a></p>
