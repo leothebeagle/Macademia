@@ -1,4 +1,10 @@
-<h3>youre on the show page for a single program</h3>
+<h3>This is the page for <%= @program.name %></h3>
+
+<label>These are the topics you have included in your program</label>
+<% @topics.each do |topic| %>
+  <p><li><%= topic.name %></li></p>
+<% end %>
+
  button to delete the program
 
  button to edit the program
