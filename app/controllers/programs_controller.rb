@@ -20,12 +20,16 @@ class ProgramsController < ApplicationController
   end
 
   post '/programs' do
-    new_program = Program.create(:name => params[:program_name])
-    current_user.programs << new_program
-    new_program.topic_ids = params[:topic_selections]
-    new_program.save
+    if params[:program_name] == "" || params[:topic_selection].is_empty?
+      redirect '/programs/new' #could also have an error message here explaining why
+    else
+      new_program = Program.create(:name => params[:program_name])
+      current_user.programs << new_program
+      new_program.topic_ids = params[:topic_selections]
+      new_program.save
 
-    redirect "/programs/#{new_program.id}"
+      redirect "/programs/#{new_program.id}"
+    end
   end
 
   get '/programs/:id' do
