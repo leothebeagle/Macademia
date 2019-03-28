@@ -1,12 +1,9 @@
+require 'sinatra/base'
+require 'sinatra/flash'
+
 class SessionsController < ApplicationController
-  #displaying the login page
-  #processing the information input in the login page
 
-  #verifying a sign-in
-  #searching the db for the user and verifying that password is correct
-  #set the seesion user_id to the students_id
-
-  #logging out is basically just clearing the session.
+  register Sinatra::Flash
 
   get '/login' do
     #only view this page if youre not logged in
@@ -19,7 +16,8 @@ class SessionsController < ApplicationController
       session[:user_id] = student.id
       redirect "/students/#{student.id}"
     else
-      redirect '/failure'
+      flash[:login_fail] = "Sorry, the username and password didn't match! Try Again."
+      redirect '/login'
     end
   end
 
@@ -27,5 +25,5 @@ class SessionsController < ApplicationController
     session.clear if logged_in?
     redirect '/'
   end
-  
+
 end

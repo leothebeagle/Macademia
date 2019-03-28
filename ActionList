@@ -1,0 +1,10 @@
+# Sinatra/flash error messages:
+
+#  Routes and controllers to build:
+
+# --> topics get route and view page for index.html.erb <-- *
+# In this route can include a flash message if not logged in.
+# message says: "If you would like to start adding topics to programs login"
+# The view will check to see if flash message is available.
+# if it is th4n will link to login page.
+# if the user is logged in then the message will change and so will the view.

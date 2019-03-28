@@ -1,5 +1,11 @@
 <h3>Login Page</h3>
 
+
+<font color="red"><% if flash[:login_fail] %>
+  <p><%= "#{flash[:login_fail]}" %></p>
+<% end %></font>
+
+
 <form action="/login" method="post">
   <label for="username">Username:</label>
   <input type="text" name="username">
