@@ -1,1 +1,12 @@
-lists all the available topics 
+<h3>These are the topics available to study:</h3>
+
+<% @topics.each do |topic| %>
+  <p><%= topic.name %></p>
+<% end %>
+
+<% if logged_in?%>
+  <p><a href="/programs">Programs</a></p>
+  <p><a href="#"></a>
+<% else %>
+  <p><a href="/login">Login</a></p>
+<% end %>
