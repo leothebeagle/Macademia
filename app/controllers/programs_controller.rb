@@ -45,6 +45,7 @@ class ProgramsController < ApplicationController
     if logged_in? && @program.student == current_user
       erb :"programs/show.html"
     else
+
       redirect '/failure'
     end
   end
