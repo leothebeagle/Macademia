@@ -1,3 +1,9 @@
 <h3>Sorry that failed, couldnt do what you wanted</h3>
 
-<a href="/">Home</a>
+<font color="red"><% if flash[:notice] %>
+  <%= "#{flash[:notice]}" %>
+  <p><a href="/login">Login</a></p>
+<% end %>
+</font>
+
+<p><a href="/">Home</a></p>

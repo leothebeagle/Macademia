@@ -1,11 +1,17 @@
+require 'sinatra/base'
+require 'sinatra/flash'
+
+
 class ProgramsController < ApplicationController
 
+  register Sinatra::Flash
 
   get '/programs' do
-    @programs = current_user.programs
     if !logged_in?
+      flash[:notice] = "Oops!You will need to log in to access your program list"
       redirect '/failure'
     else
+      @programs = current_user.programs
       erb :"programs/index.html"
     end
   end
