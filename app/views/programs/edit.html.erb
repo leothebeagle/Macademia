@@ -2,7 +2,13 @@
 
 <form action="/programs/<%= @program.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
+
+  <% if flash[:program_name_error] %>
+    <font color="red"><p><%= "#{flash[:program_name_error]}" %></p></font>
+  <% end %>
+
   <label for="program_name">Program Name:</label>
+
   <input type="text" name="program_name" value="<%= @program.name %>">
 
   <p><label for="topic_selections">Topic Selections:</label></p>
@@ -14,5 +20,9 @@
   <input type="submit">
 
 </form>
+
+<% if flash[:program_name_error] %>
+  <p>Back to <a href="/programs">programs.</a></p>
+<% end %>
 
 <p><a href="/logout">Logout</a></p>

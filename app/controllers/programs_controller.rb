@@ -50,26 +50,33 @@ class ProgramsController < ApplicationController
   end
 
   delete '/programs/:id' do
+
     @program = Program.find(params[:id])
 
     if logged_in? && @program.student == current_user
       @program.delete
       redirect '/programs'
+
     else
       redirect '/failure'
     end
+
   end
 
   patch '/programs/:id' do
     program = Program.find(params[:id])
+
     if logged_in? && program.student == current_user && params[:program_name] != ""
       program.topic_ids = params[:topic_selections]
       program.save
 
       redirect "/programs/#{program.id}"
+
     else
-      redirect '/failure'
+      flash[:program_name_error] = "Please include a name for your program."
+      redirect "/programs/#{program.id}/edit"
     end
+
   end
 
   get '/programs/:id/edit' do
@@ -81,6 +88,7 @@ class ProgramsController < ApplicationController
     else
       redirect '/failure'
     end
+
   end
 
 
