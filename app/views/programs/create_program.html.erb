@@ -1,9 +1,13 @@
 <h3>On this Page you can create a new program</h3>
 
+<p><% if flash[:create_program_error]%>
+  <font color="red"><%= "#{flash[:create_program_error]}"%></font>
+<% end %></p>
+
 <form action="/programs" method="post">
   <label for="program_name">Program Name:</label>
   <input type="text" name="program_name">
-
+  <br><br>
   <label for="topic">Select the topics for your program:</label>
     <% @topics.each do |topic| %>
       <p><input type="checkbox" name="topic_selections[]" value="<%= topic.id %>"><%= topic.name %></p>

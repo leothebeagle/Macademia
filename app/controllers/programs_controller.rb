@@ -27,6 +27,7 @@ class ProgramsController < ApplicationController
 
   post '/programs' do
     if params[:program_name] == "" || params[:topic_selection].is_empty?
+      flash[:create_program_error] = "You need to fill out the program name and make a topic selection."
       redirect '/programs/new' #could also have an error message here explaining why
     else
       new_program = Program.create(:name => params[:program_name])
