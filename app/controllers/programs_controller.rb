@@ -62,7 +62,7 @@ class ProgramsController < ApplicationController
 
   patch '/programs/:id' do
     program = Program.find(params[:id])
-    if logged_in? && program.student == current_user
+    if logged_in? && program.student == current_user && params[:program_name] != ""
       program.topic_ids = params[:topic_selections]
       program.save
 
